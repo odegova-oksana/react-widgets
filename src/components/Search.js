@@ -19,9 +19,18 @@ const Search = () => {
         });
         setResults (data.query.search);
       };
-      if (term) {
-        search ();
-      }
+
+      const timeoutid = setTimeout(() => {
+        if (term) {
+            search ();
+          }
+      }, 500);
+
+      //this return will be called as a first thing 
+      //during every next call of useEffect (when term is changed)
+      return () => {
+        clearTimeout(timeoutid);
+      };
     },
     [term]
   );
@@ -29,11 +38,14 @@ const Search = () => {
   const renderedResults = results.map (result => {
     return (
       <div key={result.pageid} className="item">
+        <div className="right floated content">
+          <a className="ui button" href={`https://en.wikipedia.org?curid=${result.pageid}`}>Go</a>
+        </div>
         <div className="content">
           <div className="header">
             {result.title}
           </div>
-          <span dangerouslySetInnerHTML={{ __html: result.snippet}}></span>
+          <span dangerouslySetInnerHTML={{__html: result.snippet}} />
         </div>
       </div>
     );
