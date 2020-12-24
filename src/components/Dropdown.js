@@ -1,7 +1,7 @@
 import {render} from '@testing-library/react';
 import React, {useEffect, useRef, useState} from 'react';
 
-const Dropdown = ({options, selected, onSelectedChange}) => {
+const Dropdown = ({options, selected, onSelectedChange, label}) => {
   const [open, setOpen] = useState (false);
   const ref = useRef ();
 
@@ -39,7 +39,7 @@ const Dropdown = ({options, selected, onSelectedChange}) => {
   return (
     <div ref={ref} className="ui form">
       <div className="field">
-        <label className="label">Select a colour</label>
+        <label className="label">{label}</label>
         <div
           onClick={() => setOpen (!open)}
           className={`ui selection dropdown ${open ? 'visible active' : ''}`}
@@ -51,7 +51,7 @@ const Dropdown = ({options, selected, onSelectedChange}) => {
           </div>
         </div>
       </div>
-      <div className="text" style={{color: selected.value}}>The text is {selected.value}</div>
+      {/*  <div className="text" style={{color: selected.value}}>The text is {selected.value}</div> */}
     </div>
   );
 };
