@@ -3,6 +3,8 @@ import Accordion from './components/Accordion';
 import Search from './components/Search';
 import Translate from './components/Translate';
 import DropdownPanel from './components/DropdownPanel';
+import Route from './components/Route';
+import Header from './components/Header';
 
 const items = [
   {title: 'What is React?', content: 'React is framework'},
@@ -13,10 +15,19 @@ const items = [
 export default () => {
   return (
     <div>
-      {/* <Accordion items={items} />
-      <Search />
-      <DropdownPanel /> */}
-      <Translate />
+      <Header />
+      <Route path="/">
+        <Accordion items={items} />
+      </Route>
+      <Route path="/list">
+        <Search />
+      </Route>
+      <Route path="/dropdown">
+        <DropdownPanel showStr={true}/>
+      </Route>
+      <Route path="/translate">
+        <Translate />
+      </Route>
     </div>
   );
 };

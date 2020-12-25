@@ -1,7 +1,7 @@
 import {render} from '@testing-library/react';
 import React, {useEffect, useRef, useState} from 'react';
 
-const Dropdown = ({options, selected, onSelectedChange, label}) => {
+const Dropdown = ({options, selected, onSelectedChange, label, showStr}) => {
   const [open, setOpen] = useState (false);
   const ref = useRef ();
 
